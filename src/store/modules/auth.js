@@ -1,4 +1,4 @@
-import { signIn, getUser } from "@/services/auth.service";
+import { signIn, getUser, registerUser } from "@/services/auth.service";
 import { authUpdateHero } from "@/services/hero.service";
 
 export default {
@@ -59,6 +59,10 @@ export default {
         console.log("Error in updateHero:", err);
         return false;
       }
+    },
+    async registerUser(_, { login, password, hero, captchaToken }) {
+      const result = await registerUser(login, password, hero, captchaToken);
+      return result;
     },
     logout({ commit }) {
       commit("setAuthentication", { isAuthenticated: false, xsrfToken: null });

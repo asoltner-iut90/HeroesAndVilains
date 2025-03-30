@@ -7,6 +7,7 @@ import TeamView from "@/views/TeamView.vue";
 import TeamsView from "@/views/TeamsView.vue";
 import AuthentificationView from "@/views/AuthentificationView.vue";
 import LoginView from "@/views/LoginView.vue";
+import RegisterView from "@/views/RegisterView.vue";
 import store from "@/store";
 
 Vue.use(VueRouter);
@@ -21,6 +22,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: LoginView
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: RegisterView
   },
   {
     path: "/auth",

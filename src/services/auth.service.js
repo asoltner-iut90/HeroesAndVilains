@@ -24,4 +24,21 @@ async function getUser(login) {
   }
 }
 
-export { signIn, getUser };
+async function registerUser(login, password, hero, captchaToken) {
+  try {
+    const response = await authAxiosAgent.post("/user/register", {
+      login,
+      password,
+      hero,
+      captchaToken,
+    });
+    return response.data;
+  } catch (err) {
+    return {
+      error: 1,
+      data: err.response ? err.response.data : "Network error",
+    };
+  }
+}
+
+export { signIn, getUser, registerUser };

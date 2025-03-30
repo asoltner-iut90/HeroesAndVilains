@@ -10,8 +10,8 @@
         required
       ></v-text-field>
       <v-btn :disabled="!valid" @click="submit">Login</v-btn>
+      <v-btn @click="$router.push('/register')">Register</v-btn>
     </v-form>
-    <p v-if="errorMessage" style="color: red">{{ errorMessage }}</p>
   </v-container>
 </template>
 
@@ -33,11 +33,11 @@ export default {
     ...mapActions("auth", ["login", "fetchUser"]),
     async submit() {
       const success = await this.login({
-        login: this.loginInput, // Use "loginInput" here
+        login: this.loginInput, 
         password: this.password,
       });
       if (success) {
-        await this.fetchUser(this.loginInput); // Use "loginInput" here
+        await this.fetchUser(this.loginInput);
         this.$router.push("/");
       } else {
         this.errorMessage = "Invalid login or password.";
