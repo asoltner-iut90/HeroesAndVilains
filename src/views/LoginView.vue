@@ -23,7 +23,7 @@ export default {
 
   data() {
     return {
-      loginInput: "", // Renamed from "login" to "loginInput"
+      loginInput: "",
       password: "",
       valid: false,
       errorMessage: "",
