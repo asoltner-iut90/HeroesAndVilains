@@ -45,6 +45,10 @@ axiosAgent.interceptors.request.use(
 )
 */
 
+const authAxiosAgent = axios.create({
+  baseURL: 'https://apidemo.iut-bm.univ-fcomte.fr/authapi'
+});
+
 axiosAgent.interceptors.request.use(
   (config) => {
     const secret = store.state.secret.OrganisationPassword;
@@ -55,6 +59,17 @@ axiosAgent.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
+
+authAxiosAgent.interceptors.request.use(
+  (config) => {
+    const xsrfToken = localStorage.getItem("xsrfToken");
+    if (xsrfToken) {
+      config.headers["x-xsrf-token"] = xsrfToken;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+)
 
 function handleError(serviceName, err) {
   if (err.response) {
@@ -168,5 +183,7 @@ export {
   getRequest,
   postRequest,
   patchRequest,
-    putRequest
+  putRequest,
+  axiosAgent,
+  authAxiosAgent,
 }

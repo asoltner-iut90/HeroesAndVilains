@@ -6,6 +6,7 @@ import OrganisationView from "@/views/OrganisationView.vue";
 import TeamView from "@/views/TeamView.vue";
 import TeamsView from "@/views/TeamsView.vue";
 import AuthentificationView from "@/views/AuthentificationView.vue";
+import LoginView from "@/views/LoginView.vue";
 import store from "@/store";
 
 Vue.use(VueRouter);
@@ -15,6 +16,11 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: LoginView
   },
   {
     path: "/auth",
@@ -58,15 +64,13 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    const isAuthenticated = store.state.secret.OrganisationPassword !== "";
-    if (!isAuthenticated) {
-      next({ name: "auth" });
-    } else {
-      next(); 
-    }
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+  const isAuthenticated = store.state.auth.isAuthenticated;
+
+  if (requiresAuth && !isAuthenticated) {
+    next({ name: "login" });
   } else {
-    next(); 
+    next();
   }
 });
 
