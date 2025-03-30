@@ -1,4 +1,4 @@
-import {getRequest, postRequest, putRequest} from "@/services/axios.service"
+import {getRequest, postRequest, putRequest, authAxiosAgent} from "@/services/axios.service"
 
 async function getAliasesFromAPI(){
     return getRequest("/heroes/getaliases", "getAliases")
@@ -28,9 +28,18 @@ async function getHeroByID(id, secret){
     return await getHeroByIDFromAPI(id, secret)
 }
 
+async function authUpdateHeroFromAPI(hero) {
+    return await authAxiosAgent.put("/heroes/authupdate", hero, "authUpdateHero");
+}
+
+async function authUpdateHero(hero) {
+    return await authUpdateHeroFromAPI(hero);
+}
+
 export {
     getAliases,
     createHero,
     updateHero,
-    getHeroByID
+    getHeroByID,
+    authUpdateHero,
 }

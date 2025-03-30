@@ -1,4 +1,5 @@
 import { signIn, getUser } from "@/services/auth.service";
+import { authUpdateHero } from "@/services/hero.service";
 
 export default {
   namespaced: true,
@@ -38,6 +39,25 @@ export default {
         commit("setUser", result.data);
       } else {
         commit("setUser", null);
+      }
+    },
+    async updateHero({ state }, hero) {
+      if (!state.isAuthenticated) {
+        console.log("User is not authenticated.");
+        return false;
+      }
+      try {
+        const result = await authUpdateHero(hero);
+        if (result.error === 0) {
+          console.log("Hero updated successfully:", result.data);
+          return true;
+        } else {
+          console.log("Error updating hero:", result.data);
+          return false;
+        }
+      } catch (err) {
+        console.log("Error in updateHero:", err);
+        return false;
       }
     },
     logout({ commit }) {
