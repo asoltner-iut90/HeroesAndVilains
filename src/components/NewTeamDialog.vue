@@ -20,8 +20,8 @@ export default{
   },
 
   methods:{
-
-    ...mapActions(["getOrganisations", "newOrganisation", "createTeam"]),
+    ...mapActions("secret", ["getOrganisations", "newOrganisation"]),
+    ...mapActions("general", ["createTeam"]),
 
     displayDialog(){
       this.dialog = true

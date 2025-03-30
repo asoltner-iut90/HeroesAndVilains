@@ -18,7 +18,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['HeroAliases', "CurrentTeam"]),
+    ...mapState("general", ['HeroAliases', "CurrentTeam"]),
 
     sortedHeroes() {
       let heroes = this.HeroAliases.filter(obj1 =>
@@ -34,7 +34,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getHeroAliases", "addHeroesToTeam", "createHero"]),
+    ...mapActions("general", ["getHeroAliases", "addHeroesToTeam", "createHero"]),
 
     displayDialog(){
       this.dialog = true

@@ -9,12 +9,12 @@ import {mapActions, mapState} from "vuex";
     components: {ConfirmDialog, AddTeamDialog},
 
     computed: {
-      ...mapState(["CurrentOrganisation", "CurrentTeam"])
+      ...mapState("general", ["CurrentOrganisation", "CurrentTeam"])
     },
 
     methods: {
 
-      ...mapActions(["removeTeamFromOrganisation", "setCurrentTeam"]),
+      ...mapActions("general", ["removeTeamFromOrganisation", "setCurrentTeam"]),
 
       openAddDialog() {
         this.$refs.AddTeamDialog.displayDialog();

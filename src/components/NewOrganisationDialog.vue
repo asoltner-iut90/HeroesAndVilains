@@ -23,7 +23,7 @@ export default{
 
   methods:{
 
-    ...mapActions(["getOrganisations", "newOrganisation"]),
+    ...mapActions("general", ["getOrganisations", "newOrganisation"]),
 
     displayDialog(){
       this.dialog = true

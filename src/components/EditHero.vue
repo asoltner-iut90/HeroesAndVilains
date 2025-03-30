@@ -23,7 +23,7 @@ export default {
 
   computed: {
 
-    ...mapState(["HeroPowerTypes"]),
+    ...mapState("general", ["HeroPowerTypes"]),
 
     formattedHeroPowerTypes() {
       return this.HeroPowerTypes.map((text, index) => ({ text, value: index+1 }));

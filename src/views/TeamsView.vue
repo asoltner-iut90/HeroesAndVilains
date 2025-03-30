@@ -7,7 +7,7 @@ export default {
   components: {NewTeamDialog, TeamsList},
 
   methods: {
-    ...mapActions(["getTeams"]),
+    ...mapActions("general", ["getTeams"]),
 
     newTeam(){
       this.$refs.NewTeamDialog.displayDialog()
@@ -15,7 +15,7 @@ export default {
   },
 
   computed:{
-    ...mapState(["Teams"])
+    ...mapState("general", ["Teams"])
   },
 
   mounted() {

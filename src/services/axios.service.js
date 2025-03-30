@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '@/store'
 
 /* Explications :
 
@@ -43,6 +44,17 @@ axiosAgent.interceptors.request.use(
     error => { return Promise.reject(error) }
 )
 */
+
+axiosAgent.interceptors.request.use(
+  (config) => {
+    const secret = store.state.secret.OrganisationPassword;
+    if (secret) {
+      config.headers["org-secret"] = secret;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 function handleError(serviceName, err) {
   if (err.response) {

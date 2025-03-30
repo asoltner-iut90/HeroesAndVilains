@@ -6,7 +6,7 @@ import {mapActions, mapState} from "vuex";
     name: "AddTeamDialog",
 
     computed: {
-      ...mapState(["Teams", "CurrentOrganisation"]),
+      ...mapState("general", ["Teams", "CurrentOrganisation"]),
 
       sortedTeams() {
         return this.Teams.filter(obj1 =>
@@ -17,7 +17,7 @@ import {mapActions, mapState} from "vuex";
     },
 
     methods: {
-      ...mapActions(["getTeams", "addTeamToOrganisation"]),
+      ...mapActions("general", ["getTeams", "addTeamToOrganisation"]),
 
       displayDialog(){
         this.dialog = true

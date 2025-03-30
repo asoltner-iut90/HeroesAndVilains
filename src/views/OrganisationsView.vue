@@ -21,7 +21,7 @@ export default {
   name:'OrganisationsView',
   components: {AddOrganisationDialog: NewOrganisationDialog, OrganisationList},
   computed:{
-    ...mapState(["OrganisationNames"]),
+    ...mapState("general", ["OrganisationNames"]),
 
     sortedOrganisationNames(){
       let sortedOrganisationNames = this.OrganisationNames
@@ -32,7 +32,7 @@ export default {
 
   },
   methods:{
-    ...mapActions(["getOrganisations"]),
+    ...mapActions("general", ["getOrganisations"]),
 
     newOrganisation(){
       this.$refs.addOrgDialog.displayDialog()

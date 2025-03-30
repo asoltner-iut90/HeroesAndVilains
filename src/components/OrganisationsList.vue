@@ -5,7 +5,8 @@ import {mapActions, mapState} from "vuex";
 export default {
   name:'OrganisationList',
   computed:{
-    ...mapState(["CurrentOrganisation", "OrganisationPassword"]),
+    ...mapState("general", ["CurrentOrganisation"]),
+    ...mapState("secret", ["OrganisationPassword"]),
   },
   props: {
     OrganisationNames: {
@@ -16,7 +17,7 @@ export default {
 
   methods:{
 
-    ...mapActions(["getOrganisation"]),
+    ...mapActions("general", ["getOrganisation"]),
 
     async selectOrganisation(orgId){
       await this.getOrganisation({"id": orgId, "secret": this.OrganisationPassword});

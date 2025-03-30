@@ -7,12 +7,12 @@ import {mapActions, mapState} from "vuex";
     name: 'NavBar',
 
     computed: {
-      ...mapState(["OrganisationPassword"])
+      ...mapState("secret", ["OrganisationPassword"])
     },
 
     methods:{
 
-      ...mapActions(["setOrganisationPassword"]),
+      ...mapActions("secret", ["setOrganisationPassword"]),
 
       updateSecret(value){
         this.setOrganisationPassword(value)
